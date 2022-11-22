@@ -27,6 +27,7 @@ class InsectsController < ApplicationController
     set_insect
     @insect.destroy
     redirect_to insects_path
+  end
 
   def api_index
     render json: { data: Insect.all.each_with_object([]) { |obj, arr| arr << obj.as_json } }
