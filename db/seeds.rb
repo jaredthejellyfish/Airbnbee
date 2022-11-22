@@ -3,5 +3,24 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+#   movies = Movie.creaLord of the Rings" }])
+#   CharacLuke", movie: movies.first)
+require 'faker'
+
+def seed_user
+    User.create!(email:Faker::Internet.email, password: Faker::Lorem.characters(number: 12))
+end
+
+def seed_insect(user)
+    Insect.create!(name: Faker::Games::Pokemon.name, description: Faker::Lorem.paragraph, user: user, price: rand(1..10000))
+end
+
+def seed_bookings(user, insect)
+    Booking.create!(user: user, insect: insect, start_date: Faker::Date.backward(days: 14), end_date: Faker::Date.forward(days: 23), rating: rand(1..5), review: Faker::Lorem.paragraph)
+end
+
+10.times do
+    user = seed_user
+    insect = seed_insect(user)
+    seed_bookings(user, insect)
+end
