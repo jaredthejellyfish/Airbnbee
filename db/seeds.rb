@@ -6,6 +6,7 @@
 #   movies = Movie.creaLord of the Rings" }])
 #   CharacLuke", movie: movies.first)
 require 'faker'
+require "open-uri"
 
 def generate_image_url
     "https://source.unsplash.com/collection/8884129/512x512?#{rand()}"
@@ -31,3 +32,5 @@ puts "Seeding! 🌱"
     seed_bookings(user, insect)
 end
 puts "Seeding done! 🚀"
+
+Insect.all[0].photo = Cloudinary::Uploader.upload("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/praying-mantis-amazing-insects-1595937972.jpg?crop=0.671xw:1.00xh;0.178xw,0&resize=640:*")

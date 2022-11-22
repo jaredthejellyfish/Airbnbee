@@ -2,3 +2,20 @@
 
 <h2><%= @insect.name %></h2>
 <p><%= @insect.description %></p>
+<% if @insect.photo.attached?  %>
+  <%= cl_image_tag @insect.photo.key %>
+ <% else %>
+ <a href="insects/"><img class="item-image" src="<%= @insect.img_url %>"></a>
+  <% end %>
+
+
+  <div>
+    <%= link_to "Back to all insects", insects_path %>
+  </div>
+
+<% if current_user.id == @insect.user_id %>
+    <%= link_to "Delete",
+      insect_path(@insect),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+    <% end %>
