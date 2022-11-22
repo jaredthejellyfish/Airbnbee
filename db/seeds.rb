@@ -33,4 +33,52 @@ puts "Seeding! 🌱"
 end
 puts "Seeding done! 🚀"
 
-Insect.all[0].photo = Cloudinary::Uploader.upload("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/praying-mantis-amazing-insects-1595937972.jpg?crop=0.671xw:1.00xh;0.178xw,0&resize=640:*")
+file = URI.open("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/praying-mantis-amazing-insects-1595937972.jpg?crop=0.671xw:1.00xh
+;0.178xw,0&resize=640:*")
+insect = Insect.all[0]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/8/2022/08/CLI366.insects.cockchaferheadonb.jpg")
+insect = Insect.all[1]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://www.arrowexterminators.com/assets/istock-1032959962_gvZN2oZ.jpg")
+insect = Insect.all[2]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+
+file = URI.open("https://i.ytimg.com/vi/xcKL9k2Udi8/maxresdefault.jpg")
+insect = Insect.all[3]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://img.freepik.com/premium-photo/beautiful-butterfly-front-view-flower-closeup-insect-beautiful-butterfly-stay-flower_488145-2459.jpg?w=1024")
+insect = Insect.all[4]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://rare-gallery.com/thumbs/563164-beautiful-butterfly.jpg")
+insect = Insect.all[5]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://www.superiorwallpapers.com/insects/beautiful-colored-locust-insect-on-a-green-leaf_1280x960.jpg")
+insect = Insect.all[6]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://images.radio-canada.ca/q_auto,w_960/v1/ici-premiere/16x9/stick-insect-animals-and-pets-branch-insect-insects-nature-tree-wisconsin.jpg")
+insect = Insect.all[7]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://cdn.shopify.com/s/files/1/0037/9591/0723/products/acheterPhasmeFeuille-Phylliumphilippinicum.jpg?v=1665574073&width=1445")
+insect = Insect.all[8]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://i0.wp.com/www.honeybeesuite.com/wp-content/uploads/2011/03/David-Cappaert-3.jpg?fit=1170%2C960&ssl=1")
+insect = Insect.all[9]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://i.natgeofe.com/n/b52d8e74-4b54-4dda-b895-c9695cc6530d/explore-basic-instincts-queen-ants_16x9.jpg")
+insect = Insect.all[10]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
+
+file = URI.open("https://ants.com/wp-content/uploads/2022/01/honey-pot-ants-768x547-1.jpg")
+insect = Insect.all[11]
+insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
