@@ -1,5 +1,5 @@
 class InsectsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:api_index]
   def index
     @insects = Insect.all
   end
@@ -8,6 +8,9 @@ class InsectsController < ApplicationController
     set_insect
   end
 
+  def api_index
+    render json: { data: Insect.all.each_with_object([]) { |obj, arr| arr << obj.as_json } }
+  end
 
   private
 
@@ -18,5 +21,4 @@ class InsectsController < ApplicationController
   def insect_params
     params.require(:insect).permit(:name, :description, :user_id)
   end
-
 end
