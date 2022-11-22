@@ -3,6 +3,19 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = ["card", "searchInput"]
 
+    fadeOut(element) {
+        var op = 1;  // initial opacity
+        var timer = setInterval(function () {
+            if (op <= 0.1) {
+                clearInterval(timer);
+                element.style.display = 'none';
+            }
+            element.style.opacity = op;
+            element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+            op -= op * 0.1;
+        }, 10);
+    }
+
     fetchCards() {
         let cardIdWithInsectName = {};
         this.cardTargets.forEach(card => {
@@ -29,8 +42,9 @@ export default class extends Controller {
         if (Object.keys(filteredCards).length > 0) {
             this.cardTargets.forEach(card => {
                 if (Object.values(cards).includes(card.id)) {
-                    card.style.display = 'none';
+                    this.fadeOut(card)
                 } else {
+                    card.style.opacity = 1
                     card.style.display = 'block';
                 }
             });
