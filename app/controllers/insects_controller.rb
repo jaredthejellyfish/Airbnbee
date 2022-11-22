@@ -1,5 +1,5 @@
 class InsectsController < ApplicationController
-  before_action :authenticate_user!, except: [:api_index]
+  before_action :authenticate_user!, except: %i[api_index index show]
   def index
     @insects = Insect.all
   end

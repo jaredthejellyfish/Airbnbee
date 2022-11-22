@@ -1,9 +1,10 @@
+<div data-controller="search">
 <div class="form-outline">
-  <input type="search" id="form1" class="form-control" placeholder="Type query" aria-label="Search" />
+  <input type="search" id="form1" class="form-control" placeholder="Type query" aria-label="Search"  data-action="keyup->search#search" data-search-target="searchInput"/>
 </div>
 <div class="results-container">
   <% @insects.each do |insect| %>
-    <div class="item-card" id=<%= insect.id %>>
+    <div class="item-card" id=<%= insect.id %> data-search-target="card">
       <a href="insects/<%= insect.id %>"><img class="item-image" src="<%= insect.img_url %>"></a>
       <div class="item-text">
         <h3 class="item-name"><%= link_to insect.name, insect_path(insect) %></h3>
@@ -11,3 +12,4 @@
     </div>
   <% end %>
  </div>
+</div>
