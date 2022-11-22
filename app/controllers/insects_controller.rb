@@ -8,6 +8,18 @@ class InsectsController < ApplicationController
     set_insect
   end
 
+  def new
+    @insect = Insect.new
+  end
+
+  def create
+    @insect = Insect.new(insect_params)
+    if @insect.save
+      redirect_to insect_path(@insect)
+    else
+      render :new
+    end
+  end
 
   private
 
@@ -16,7 +28,7 @@ class InsectsController < ApplicationController
   end
 
   def insect_params
-    params.require(:insect).permit(:name, :description, :user_id)
+    params.require(:insect).permit(:name, :description, :img_url)
   end
 
 end

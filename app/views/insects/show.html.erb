@@ -2,3 +2,9 @@
 
 <h2><%= @insect.name %></h2>
 <p><%= @insect.description %></p>
+  <%= @insect.img_url %>
+
+
+  <div>
+    <%= link_to "Back to all insects", insects_path %>
+  </div>
