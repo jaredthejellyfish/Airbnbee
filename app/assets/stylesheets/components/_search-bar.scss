@@ -9,14 +9,15 @@ $button-color: #6D071A;
 
 .button-search {
   position: absolute;
-  height: 32px;
-  bottom: 35px;
-  right: 35px;
-  width: 200px;
+  height: 60px;
+  bottom: 34px;
+  right: 34px;
+  width: 20%;
   background-color: $button-color;
   border: none;
-  border-radius: 20px;
+  border-radius: 32px;
   color: #FFFFFF;
+  font-size: 20px;
 }
 
 .button-search:hover {
@@ -30,5 +31,7 @@ $button-color: #6D071A;
 }
 
 .search-bar .form-control {
-  border-radius: 20px;
+  border-radius: 32px;
+  height: 64px;
+  font-size: 28px;
 }
