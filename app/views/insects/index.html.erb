@@ -6,7 +6,7 @@
   <% @insects.each do |insect| %>
     <div class="item-card" id=<%= insect.id %>>
     <% if insect.photo.attached?  %>
-      <img img class="item-image"<%= cl_image_tag insect.photo.key %>
+      <a href="insects/<%= insect.id %>"><img img class="item-image"<%= cl_image_tag insect.photo.key %></a>
     <% else %>
       <a href="insects/<%= insect.id %>"><img class="item-image" src="<%= insect.img_url %>"></a>
     <% end %>
