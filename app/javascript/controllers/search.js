@@ -19,7 +19,7 @@ export default class extends Controller {
     fetchCards() {
         let cardIdWithInsectName = {};
         this.cardTargets.forEach(card => {
-            cardIdWithInsectName[card.innerText] = card.id;
+            cardIdWithInsectName[card.innerText.replace(/(\r\n|\n|\r|\s)/gm, "")] = card.id;
         });
         return cardIdWithInsectName;
     }
@@ -41,11 +41,10 @@ export default class extends Controller {
         Object.keys(filteredCards).forEach(card => { delete cards[card]; });
         if (Object.keys(filteredCards).length > 0) {
             this.cardTargets.forEach(card => {
-                if (Object.values(cards).includes(card.id)) {
-                    this.fadeOut(card)
-                } else {
-                    card.style.opacity = 1
+                if (Object.values(filteredCards).includes(card.id)) {
                     card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
                 }
             });
         }
