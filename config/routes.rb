@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :users do
     resources :bookings, only: [:show]
   end
+
+  get "/api/insects", to: "insects#api_index"
 end

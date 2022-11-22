@@ -11,10 +11,14 @@
 @import "components/index";
 @import "pages/index";
 
+$background: #214d2e;
+$card-background: #FFFDD0;
+
 a:link { text-decoration: none; }
 
 body {
-  padding: 60px 0;
+  background-color: $background;
+  padding: 70px 0;
 }
 
 .results-container {
@@ -26,12 +30,20 @@ body {
 }
 
 .item-card {
+  background-color: $card-background;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   width: 256px;
   flex-grow: 1;
   justify-self: stretch;
   margin: 32px;
   padding: 20px;
-  border: 1px solid #000000;
+}
+
+.item-card:hover {
+  scale: 1.05;
+  transition-duration: 0.5s;
 }
 
 .item-text {
@@ -40,4 +52,6 @@ body {
 
 .item-image {
   width: 100%;
+  border: 1px solid rgb(157, 156, 156);
+  border-radius: 5px;
 }
