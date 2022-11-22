@@ -1,7 +1,8 @@
-<div class="form-outline">
-  <input type="search" id="form1" class="form-control" placeholder="Type query" aria-label="Search" />
-</div>
 <div class="results-container">
+  <div class="search-bar form-inline">
+    <input type="search" id="form1" class="type-bar form-control" placeholder="Type query" aria-label="Search" />
+    <button class="button-search" type="submit">Search</button>
+  </div>
   <% @insects.each do |insect| %>
     <div class="item-card" id=<%= insect.id %>>
       <a href="insects/<%= insect.id %>"><img class="item-image" src="<%= insect.img_url %>"></a>
