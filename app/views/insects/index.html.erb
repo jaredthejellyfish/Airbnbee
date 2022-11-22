@@ -1,4 +1,10 @@
-<h1></h1>
-
-<h2>We are the Crewsin' Boys</h2>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="results-container">
+  <% @insects.each do |insect| %>
+    <div class="item-card">
+      <a href="insects/<%=insect.id %>"><img class="item-image" src="<%= insect.img_url %>"></a>
+      <div class="item-text">
+        <h3 class="item-name"><%= link_to insect.name, insect_path(insect) %></h3>
+      </div>
+    </div>
+  <% end %>
+ </div>
