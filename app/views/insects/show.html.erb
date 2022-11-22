@@ -2,9 +2,18 @@
 
 <h2><%= @insect.name %></h2>
 <p><%= @insect.description %></p>
-  <%= @insect.img_url %>
+  <%= cl_image_tag @insect.photo.key %>
+
+
 
 
   <div>
     <%= link_to "Back to all insects", insects_path %>
   </div>
+
+<% if current_user.id == @insect.user_id %>
+    <%= link_to "Delete",
+      insect_path(@insect),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+    <% end %>

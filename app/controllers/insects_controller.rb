@@ -14,11 +14,19 @@ class InsectsController < ApplicationController
 
   def create
     @insect = Insect.new(insect_params)
+    @insect.user = current_user
     if @insect.save
       redirect_to insect_path(@insect)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
+    raise
+  end
+
+  def destroy
+    set_insect
+    @insect.destroy
+    redirect_to insects_path
   end
 
   private
@@ -28,7 +36,7 @@ class InsectsController < ApplicationController
   end
 
   def insect_params
-    params.require(:insect).permit(:name, :description, :img_url)
+    params.require(:insect).permit(:name, :description, :photo)
   end
 
 end
