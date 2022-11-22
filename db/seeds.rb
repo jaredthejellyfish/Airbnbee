@@ -8,7 +8,7 @@
 require 'faker'
 require "open-uri"
 
-def generate_image(url)
+def generate_image()
     URI.open("https://source.unsplash.com/random/900%C3%97700/?insect?#{rand()}")
 end
 
@@ -28,7 +28,7 @@ end
 
 puts "Seeding! 🌱"
 (1..90).each do |i|
-    file = generate_image(URLS[i])
+    file = generate_image()
     user = seed_user
     insect = seed_insect(user, file)
     puts "Created #{user.email} with insect: #{insect.name}!"
