@@ -9,7 +9,7 @@
   <% @insects.each do |insect| %>
     <div class="item-card" id=<%= insect.id %> data-search-target="card">
     <% if insect.photo.attached? %>
-      <a href="insects/<%= insect.id %>"><img img class="item-image"<%= cl_image_tag insect.photo.key %></a>
+      <a href="insects/<%= insect.id %>"><%= cl_image_tag insect.photo.key, class: "item-image" %></a>
     <% else %>
       <a href="insects/<%= insect.id %>"><img class="item-image" src="<%= insect.img_url %>"></a>
     <% end %>
