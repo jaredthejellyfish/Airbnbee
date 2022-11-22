@@ -35,6 +35,7 @@ body {
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   width: 256px;
+  max-width: 384px;
   flex-grow: 1;
   justify-self: stretch;
   margin: 32px;
