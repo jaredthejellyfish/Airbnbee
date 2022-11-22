@@ -20,7 +20,6 @@ class InsectsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-    raise
   end
 
   def destroy
@@ -31,7 +30,6 @@ class InsectsController < ApplicationController
 
   def api_index
     render json: { data: Insect.all.each_with_object([]) { |obj, arr| arr << obj.as_json } }
-
   end
 
   private

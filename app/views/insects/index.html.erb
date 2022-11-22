@@ -5,7 +5,7 @@
   </div>
   <% @insects.each do |insect| %>
     <div class="item-card" id=<%= insect.id %>>
-      <a href="insects/<%= insect.id %>"><img class="item-image" src="<%= insect.img_url %>"></a>
+      <a href="insects/<%= insect.id %>"><img class="item-image" src="<%= insect.photo.key %>"></a>
       <div class="item-text">
         <h3 class="item-name"><%= link_to insect.name, insect_path(insect) %></h3>
       </div>
