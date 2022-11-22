@@ -1,5 +1,13 @@
 class InsectsController < ApplicationController
 
+  def index
+    @insects = Insect.all
+  end
+
+  def show
+    set_insect
+  end
+
 
   private
 
