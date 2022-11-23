@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_user, only: %i[new create]
+  before_action :set_insect, only: %i[new create]
   before_action :set_booking, only: %i[show edit update destroy]
 
   def show
@@ -38,8 +38,8 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:start_date, :end_date, :insect_id, :rating, :review)
   end
 
-  def set_user
-    @user = current_user
+  def set_insect
+    @insect = Insect.find(params[:insect_id])
   end
 
   def set_booking

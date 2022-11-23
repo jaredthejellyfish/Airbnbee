@@ -1,7 +1,7 @@
 <h1>Book your Bug!</h1>
 
-<%= simple_form_for ([@user, @booking], data: {turbo: false}) do |f| %>
+<%= simple_form_for [@insect, @booking] do |f| %>
     <%= f.input :start_date %>
     <%= f.input :end_date %>
-    <%= f.submit "Submit", class: "btn btn-success" %>
+    <%= f.submit "Submit" %>
 <% end %>
