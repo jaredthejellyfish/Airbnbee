@@ -4,10 +4,9 @@
     <%= cl_image_tag current_user.photo.key, class: "profile-image"%>
 
     <p>First name</p>
-    <p><%= current_user.first_name %></p>
-
+    <p><%= @user.first_name %></p>
     <p>Last name</p>
-    <p><%= current_user.last_name %></p>
+    <p><%= @user.last_name %></p>
 
     <p>E-mail</p>
     <p><%= current_user.email %></p>
