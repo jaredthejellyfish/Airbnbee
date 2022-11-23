@@ -1,5 +1,5 @@
 class InsectsController < ApplicationController
-  before_action :authenticate_user!, except: %i[api_index index show ]
+  before_action :authenticate_user!, except: %i[api_index index show]
 
   def index
     @insects = Insect.all
@@ -22,6 +22,16 @@ class InsectsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def edit
+    set_insect
+  end
+
+def update
+  set_insect
+  @insect.update(insect_params)
+  redirect_to insect_path(@insect)
+end
 
   def destroy
     set_insect

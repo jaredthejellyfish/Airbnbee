@@ -1,0 +1,12 @@
+<h1>My profile</h1>
+
+<p>First name</p>
+<p><%= @user.first_name %></p>
+<p>Last mame</p>
+<p><%= @user.last_name %></p>
+
+<p>E-mail</p>
+<p><%= @user.email %></p>
+
+<button><%= link_to "Edit my profile", edit_user(@user) %></button>
+<button><%= link_to "List a new insect", new_insect_path %></button>
