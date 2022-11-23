@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    raise
   end
 
   def edit
     @user = current_user
-
   end
 
   def update
@@ -20,6 +18,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :photo)
   end
-
-
 end

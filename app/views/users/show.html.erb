@@ -8,14 +8,8 @@
 <p>E-mail</p>
 <p><%= @user.email %></p>
 
-<<<<<<< HEAD
 <%= cl_image_tag @user.photo.key %>
 
 
-
-
 <button><%= link_to "Edit my profile", edit_user_path(@user) %></button>
-=======
-<button><%= link_to "Edit my profile", edit_user(@user) %></button>
->>>>>>> 4efec15db6a421307177906283a24f300f6a590a
 <button><%= link_to "List a new insect", new_insect_path %></button>
