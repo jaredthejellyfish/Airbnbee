@@ -27,7 +27,7 @@ def seed_bookings(user, insect)
 end
 
 puts "Seeding! 🌱"
-(1..90).each do |i|
+(1..30).each do |i|
     file = generate_image()
     user = seed_user
     insect = seed_insect(user, file)
@@ -35,4 +35,3 @@ puts "Seeding! 🌱"
     seed_bookings(user, insect)
 end
 puts "Seeding done! 🚀"
-
