@@ -1,9 +1,11 @@
-<h1>Check out this fukken bug!</h1>
 
-<h2><%= @insect.name %></h2>
+
+<h1><%= @insect.name %></h1>
 <p><%= @insect.description %></p>
 <% if @insect.photo.attached?  %>
+  <div class ="item-img">
   <%= cl_image_tag @insect.photo.key %>
+  <div>
  <% else %>
  <a href="insects/"><img class="item-image" src="<%= @insect.img_url %>"></a>
   <% end %>
