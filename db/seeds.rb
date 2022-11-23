@@ -26,8 +26,20 @@ def seed_bookings(user, insect)
     booking = Booking.create!(user: user, insect: insect, start_date: Faker::Date.backward(days: 14), end_date: Faker::Date.forward(days: 23), rating: rand(1..5), review: Faker::Lorem.paragraph)
 end
 
+def intro
+    puts
+    puts "-----------------------------------"
+    puts "|            Welcome              |"
+    puts "-----------------------------------"
+    puts "How many users, insects, and bookings would you like to create? (Integer)"
+    print "> "
+    input = gets.chomp.to_i
+    puts 
+    input
+end
+
 puts "Seeding! 🌱"
-(1..30).each do |i|
+(1..intro).each do |i|
     file = generate_image()
     user = seed_user
     insect = seed_insect(user, file)
