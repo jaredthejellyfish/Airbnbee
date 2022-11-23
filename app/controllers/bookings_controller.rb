@@ -1,17 +1,15 @@
 class BookingsController < ApplicationController
   before_action :set_user, only: %i[new create]
+  before_action :set_booking, only: %i[show edit update destroy]
 
   def show
-    @booking = Booking.find(params[:id])
   end
 
   def new
-    set_user
     @booking = Booking.new
   end
 
   def create
-    set_user
     @booking = Booking.new(booking_params)
     @booking.user = @user
     if @booking.save
@@ -21,8 +19,15 @@ class BookingsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @booking.update(booking_params)
+    redirect_to insect_path(@insect)
+  end
+
   def destroy
-    @booking = Booking.find(params[:id])
     @booking.destroy
     redirect_to insects_path
   end
@@ -34,6 +39,10 @@ class BookingsController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = current_user
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
   end
 end
