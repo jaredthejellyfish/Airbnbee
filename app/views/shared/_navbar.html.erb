@@ -15,7 +15,7 @@
             <%= link_to "Home", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-              <%= cl_image_tag(@user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :auto, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>  <%#  %> 
+              <%= cl_image_tag(current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :auto, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>  <%#  %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Bookings", "#", class: "dropdown-item" %>
