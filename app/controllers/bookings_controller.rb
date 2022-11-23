@@ -11,9 +11,10 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.user = @user
+    @booking.user = current_user
+    @booking.insect = @insect
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to insect_path(@insect)
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +36,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :insect_id, :rating, :review)
+    params.require(:booking).permit(:start_date, :end_date, :insect_id)
   end
 
   def set_insect
