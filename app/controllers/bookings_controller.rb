@@ -1,17 +1,17 @@
 class BookingsController < ApplicationController
   before_action :set_user, only: [ :new, :create ]
 
-  def all
-  end
-
   def show
+    @booking = Booking.find(params[:id])
   end
 
   def new
+    set_user
     @booking = Booking.new
   end
 
   def create
+    set_user
     @booking = Booking.new(booking_params)
     @booking.user = @user
     if @booking.save
@@ -21,9 +21,11 @@ class BookingsController < ApplicationController
     end
   end
 
-
-
-
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to insects_path
+  end
 private
 
 def booking_params
