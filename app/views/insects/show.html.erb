@@ -8,14 +8,26 @@
  <a href="insects/"><img class="item-image" src="<%= @insect.img_url %>"></a>
   <% end %>
 
+<div>
+  <% if current_user && current_user.id == @insect.user_id %>
+  <%= link_to "Edit", edit_insect_path %>
+  <% else %>
+  <p></p>
+  <% end %>
+</div>
+
 
   <div>
     <%= link_to "Back to all insects", insects_path %>
   </div>
 
-<% if current_user.id == @insect.user_id %>
-    <%= link_to "Delete",
-      insect_path(@insect),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-    %>
-    <% end %>
+<% if current_user %>
+  <% if current_user.id == @insect.user_id %>
+      <%= link_to "Delete",
+        insect_path(@insect),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+  <% end %>
+<% else %>
+  <p></p>
+<% end %>
