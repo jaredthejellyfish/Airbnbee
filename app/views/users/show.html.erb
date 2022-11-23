@@ -1,15 +1,17 @@
-<h1>My profile</h1>
+<h1>Hi, <%= "#{current_user.first_name} #{current_user.last_name}"%>!</h1>
 
-<p>First name</p>
-<p><%= @user.first_name %></p>
-<p>Last name</p>
-<p><%= @user.last_name %></p>
+<div class="container">
+    <%= cl_image_tag current_user.photo.key, class: "profile-image"%>
 
-<p>E-mail</p>
-<p><%= @user.email %></p>
+    <p>First name</p>
+    <p><%= current_user.first_name %></p>
 
-<%= cl_image_tag @user.photo.key %>
+    <p>Last name</p>
+    <p><%= current_user.last_name %></p>
 
+    <p>E-mail</p>
+    <p><%= current_user.email %></p>
 
-<button><%= link_to "Edit my profile", edit_user_path(@user) %></button>
-<button><%= link_to "List a new insect", new_insect_path %></button>
+    <button><%= link_to "Edit my profile", edit_user_path(current_user) %></button>
+    <button><%= link_to "List a new insect", new_insect_path %></button>
+</div>
