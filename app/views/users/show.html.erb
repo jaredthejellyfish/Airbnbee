@@ -8,5 +8,6 @@
 <p>E-mail</p>
 <p><%= @user.email %></p>
 
-<button><%= link_to "Edit my profile", edit_user(@user) %></button>
+<button><%= link_to "Edit my profile", edit_user_path(@user) %></button>
+<button><%= link_to "List a new insect", new_insect_path %></button>
 <button><%= link_to "List a new insect", new_insect_path %></button>
