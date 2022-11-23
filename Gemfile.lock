@@ -97,6 +97,7 @@ GEM
     cloudinary (1.23.0)
       aws_cf_signer
       rest-client (>= 2.0.0)
+    colorize (0.8.1)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     debug (1.6.3)
@@ -278,6 +279,7 @@ DEPENDENCIES
   bootsnap
   capybara
   cloudinary
+  colorize
   debug
   devise
   dotenv-rails
