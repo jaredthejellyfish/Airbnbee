@@ -1,7 +1,11 @@
 <h1>Hi, <%= "#{current_user.first_name} #{current_user.last_name}"%>!</h1>
 
 <div class="container">
+  <% if @user.photo.attached? %>
     <%= cl_image_tag current_user.photo.key, class: "profile-image"%>
+  <% else %>
+    <%= image_tag asset_path("blank-prof.jpg"), class: "profile-image"%>
+  <% end %>
 
     <p>First name</p>
     <p><%= current_user.first_name %></p>
