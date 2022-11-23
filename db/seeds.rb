@@ -47,7 +47,10 @@ def intro
 end
 
 def final
-    User.create!(email: "123@email.real", password: "1234565", first_name: "Human", last_name: "Being")
+    user_file = user_image_file()
+    user = User.create!(email: "123@email.real", password: "1234565", first_name: "Human", last_name: "Being")
+    user.photo.attach(io: user_file, filename: "portrait.jpg", content_type: "image/png")
+
     puts
     puts "-----------------------------------".yellow
     puts "|            Goodbye              |".yellow
@@ -68,8 +71,8 @@ puts "Seeding! 🌱"
     user_file =   user_image_file()
     user =        seed_user(user_file)
     insect =      seed_insect(user, insect_file)
-    
-    puts ">".green + "Created #{user.email.blue} with insect: #{insect.name.blue}!"
+
+    puts "> ".green + "Created #{user.email.blue} with insect: #{insect.name.blue}!"
     seed_bookings(user, insect)
 end
 
