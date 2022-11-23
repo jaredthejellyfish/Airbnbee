@@ -7,7 +7,7 @@
 #   CharacLuke", movie: movies.first)
 require 'faker'
 require "open-uri"
-require "colorize"
+
 
 def insect_image_file()
     URI.open("https://source.unsplash.com/random/900%C3%97700/?insect?#{rand()}")
@@ -35,12 +35,12 @@ end
 
 def intro
     puts
-    puts "-----------------------------------".yellow
-    puts "|            Welcome              |".yellow
-    puts "-----------------------------------".yellow
+    puts "-----------------------------------"
+    puts "|            Welcome              |"
+    puts "-----------------------------------"
     puts
     puts "How many users, insects, and bookings would you like to create? (Integer)"
-    print ">".green + " ".white
+    print "> "
     input = gets.chomp.to_i
     puts 
     input
@@ -52,16 +52,16 @@ def final
     user.photo.attach(io: user_file, filename: "portrait.jpg", content_type: "image/png")
 
     puts
-    puts "-----------------------------------".yellow
-    puts "|            Goodbye              |".yellow
-    puts "-----------------------------------".yellow
+    puts "-----------------------------------"
+    puts "|            Goodbye              |"
+    puts "-----------------------------------"
     puts
     puts "A new default account has been generated for you to use:"
     puts
-    puts "email: ".green + "123@email.real".white
-    puts "password: ".green + "1234565".white
-    puts "first_name: ".green + "Human".white
-    puts "last_name: ".green + "Being".white
+    puts "email: 123@email.real"
+    puts "password: 1234565"
+    puts "first_name: Human"
+    puts "last_name: Being"
     puts
 end
 
@@ -72,7 +72,7 @@ puts "Seeding! 🌱"
     user =        seed_user(user_file)
     insect =      seed_insect(user, insect_file)
 
-    puts "> ".green + "Created #{user.email.blue} with insect: #{insect.name.blue}!"
+    puts "> Created #{user.email} with insect: #{insect.name}!"
     seed_bookings(user, insect)
 end
 
