@@ -48,5 +48,11 @@ export default class extends Controller {
                 }
             });
         }
+        if (this.searchInputTarget.value.length === 0) {
+            this.cardTargets.forEach(card => {
+                card.style.display = 'block';
+            });
+
+        }
     }
 }
