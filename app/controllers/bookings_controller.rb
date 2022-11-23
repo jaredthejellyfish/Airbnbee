@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_user, only: [ :new, :create ]
+  before_action :set_user, only: %i[new create]
 
   def all
   end
@@ -21,17 +21,13 @@ class BookingsController < ApplicationController
     end
   end
 
+  private
 
+  def booking_params
+    params.require(:booking).permit(:user_id, :insect_id, :start_date, :end_date, :rating, :review)
+  end
 
-
-private
-
-def booking_params
-  params.require(:booking).permit(:start_date, :end_date, :user_id, :insect_id, :rating, :review)
-end
-
-def set_user
-  @user = User.find(params[:user_id])
-end
-
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 end
