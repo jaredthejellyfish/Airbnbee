@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :insects, through: :bookings
   has_many :bookings
+  has_one_attached :photo
 end
