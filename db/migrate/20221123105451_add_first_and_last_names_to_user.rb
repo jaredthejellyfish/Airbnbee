@@ -1,6 +1,6 @@
 class AddFirstAndLastNamesToUser < ActiveRecord::Migration[7.0]
   def change
-    add_column :users, :first_name, :text
-    add_column :users, :last_name, :text
+    change_column :users, :first_name, :string
+    change_column :users, :last_name, :string
   end
 end
