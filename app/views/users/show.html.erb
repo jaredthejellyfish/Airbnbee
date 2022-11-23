@@ -10,5 +10,8 @@
 <p>E-mail</p>
 <p><%= @user.email %></p>
 
-<button><%= link_to "Edit my profile", edit_user(@user) %></button>
+<%= cl_image_tag @user.photo.key %>
+
+
+<button><%= link_to "Edit my profile", edit_user_path(@user) %></button>
 <button><%= link_to "List a new insect", new_insect_path %></button>
