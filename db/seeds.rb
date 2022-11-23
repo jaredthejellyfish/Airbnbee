@@ -35,4 +35,3 @@ puts "Seeding! 🌱"
     seed_bookings(user, insect)
 end
 puts "Seeding done! 🚀"
-
