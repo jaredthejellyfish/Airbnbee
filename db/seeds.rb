@@ -13,7 +13,7 @@ def generate_image()
 end
 
 def seed_user
-    User.create!(email:Faker::Internet.email, password: Faker::Lorem.characters(number: 12))
+    User.create!(email:Faker::Internet.email, password: Faker::Lorem.characters(number: 12), first_name: Faker::Name.first_name, last_name: Faker::Name.last_name )
 end
 
 def seed_insect(user, file)
