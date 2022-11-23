@@ -7,6 +7,7 @@
 #   CharacLuke", movie: movies.first)
 require 'faker'
 require "open-uri"
+require "colorize"
 
 def generate_image()
     URI.open("https://source.unsplash.com/random/900%C3%97700/?insect?#{rand()}")
@@ -26,12 +27,44 @@ def seed_bookings(user, insect)
     booking = Booking.create!(user: user, insect: insect, start_date: Faker::Date.backward(days: 14), end_date: Faker::Date.forward(days: 23), rating: rand(1..5), review: Faker::Lorem.paragraph)
 end
 
+def intro
+    puts
+    puts "-----------------------------------".yellow
+    puts "|            Welcome              |".yellow
+    puts "-----------------------------------".yellow
+    puts
+    puts "How many users, insects, and bookings would you like to create? (Integer)"
+    print ">".green + " ".white
+    input = gets.chomp.to_i
+    puts 
+    input
+end
+
+def final
+    User.create!(email: "123@email.real", password: "1234565", first_name: "Human", last_name: "Being")
+    puts
+    puts "-----------------------------------".yellow
+    puts "|            Goodbye              |".yellow
+    puts "-----------------------------------".yellow
+    puts
+    puts "A new default account has been generated for you to use:"
+    puts
+    puts "email: ".green + "123@email.real".white
+    puts "password: ".green + "1234565".white
+    puts "first_name: ".green + "Human".white
+    puts "last_name: ".green + "Being".white
+    puts
+end
+
 puts "Seeding! 🌱"
-(1..30).each do |i|
+(1..intro).each do |i|
     file = generate_image()
     user = seed_user
     insect = seed_insect(user, file)
-    puts "Created #{user.email} with insect: #{insect.name}!"
+    puts ">".green + "Created #{user.email.blue} with insect: #{insect.name.blue}!"
     seed_bookings(user, insect)
 end
+
+final
+
 puts "Seeding done! 🚀"
