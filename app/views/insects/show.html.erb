@@ -42,7 +42,7 @@
         <h5 class="text-bold owner-name"><%= @insect.user.first_name %> <%= @insect.user.last_name.first %>.</h5>
         <br><br>
         <em style="font-style: italic">Bugger since: <%= @insect.user.created_at.strftime("%d/%m/%Y") %></em>
-        <p>Bio : </p>
+        <p>Bio : <%= @insect.user.bio %></p>
       </div>
 
       <!-- Card about the planning / upcoming bookings -->
