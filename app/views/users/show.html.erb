@@ -18,3 +18,14 @@
     <button><%= link_to "Edit my profile", edit_user_path(current_user) %></button>
     <button><%= link_to "List a new insect", new_insect_path %></button>
 </div>
+
+<h3>Your bookings.</h3>
+
+<% Booking.all.each do |booking| %>
+  <% if current_user == booking.user %>
+    <%= booking.insect.name %>
+    <%= booking.start_date %>
+    <%= booking.end_date %>
+  <% end %>
+<% end %>
+

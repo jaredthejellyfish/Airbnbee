@@ -6,6 +6,7 @@
     <%= cl_image_tag @insect.photo.key, class:"insect-img" %>
     <% else %>
     <a href="insects/"><img class="item-image" src="<%= @insect.img_url %>"></a>
+
 <% end %>
 
 <div>
@@ -15,6 +16,17 @@
   <p></p>
   <% end %>
 </div>
+
+<p>Bookings:</p>
+
+<% Booking.all.each do |booking| %>
+  <% if @insect.id == booking.insect_id %>
+    <p>From:</p>
+    <%= booking.start_date %>
+    <p>Until:</p>
+    <%= booking.end_date %>
+  <% end %>
+<% end %>
 
 
   <div>
