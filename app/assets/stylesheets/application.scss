@@ -63,3 +63,30 @@ body {
   border: 1px solid rgb(157, 156, 156);
   border-radius: 5px;
 }
+
+.insect-img {
+  width: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.bug-card {
+  background-color: $card-background;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  width: 256px;
+  max-width: 384px;
+  flex-grow: 1;
+  justify-self: stretch;
+  margin: 32px;
+  padding: 20px;
+}
+
+.results-header {
+  margin: 15px;
+  text-align: center;
+  color: white;
+}
+
