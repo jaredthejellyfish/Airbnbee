@@ -20,12 +20,12 @@ $button-color: #6D071A;
   font-size: 16px;
 }
 
-.button-search:hover {
+.button:hover {
   background-color: #862b3c;
   color: #FFFFFF;
 }
 
-.button-search:active {
+.button:active {
   scale: 0.95;
   transition: 0.2s;
 }

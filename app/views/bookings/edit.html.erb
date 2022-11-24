@@ -1,0 +1,7 @@
+<h3>Edit your book.</h3>
+
+<%= simple_form_for [@booking], data:{turbo: false} do |f| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.submit "Submit" %>
+<% end %>

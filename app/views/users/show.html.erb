@@ -20,12 +20,17 @@
 
   <h3>Your bookings:</h3>
 
-  <% Booking.all.each do |booking| %>
-    <% if current_user == booking.user %>
-      <%= booking.insect.name %>
-      <%= booking.start_date %>
-      <%= booking.end_date %>
-    <% end %>
+
+<% Booking.all.each do |booking| %>
+  <% if current_user == booking.user %>
+    <%= booking.insect.name %>
+    <%= booking.start_date %>
+    <%= booking.end_date %>
+    <%= link_to "Edit", edit_booking_path(booking) %>
+    <%= link_to "Delete",
+        [current_user, booking],
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
   <% end %>
     <h3 class = "results-header">Your insects:</h3>
 

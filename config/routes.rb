@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   root to: "insects#index"
 
   resources :insects do
-    resources :bookings
+    resources :bookings, only: [:new, :create]
   end
 
   resources :users do
-    resources :bookings, only: [:show]
+    resources :bookings, only: [:show, :destroy]
   end
+  resources :bookings, only: [:edit, :update]
 
   get "/api/insects", to: "insects#api_index"
 end
