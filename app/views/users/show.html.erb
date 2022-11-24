@@ -32,7 +32,8 @@
         data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
       %>
   <% end %>
-    <h3 class = "results-header">Your insects:</h3>
+<% end %>
+<h3 class = "results-header">Your insects:</h3>
 
 <div class="results-container">
     <% Insect.where(user: current_user).each do |insect| %>
@@ -47,6 +48,6 @@
           <a href="insects/"><img class="item-image" src="<%= insect.img_url %>"></a>
         <% end %>
     </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
