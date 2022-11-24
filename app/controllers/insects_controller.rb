@@ -51,6 +51,6 @@ end
   end
 
   def insect_params
-    params.require(:insect).permit(:name, :description, :photo)
+    params.require(:insect).permit(:name, :description, :photo, :price)
   end
 end
