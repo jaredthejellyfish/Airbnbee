@@ -7,6 +7,7 @@ class InsectsController < ApplicationController
 
   def show
     set_insect
+    @booking = Booking.new
   end
 
   def new
