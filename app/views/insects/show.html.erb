@@ -68,8 +68,8 @@
       <h2 class="text-centered text-bold">Book <%= @insect.name %></h2>
 
       <%= simple_form_for [@insect, @booking] do |f| %>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
+          <%= f.input :start_date, as: :date, html5: true, include_blank: true, format: 'dd-mm-yyyy' %>
+          <%= f.input :end_date, as: :date, html5: true, include_blank: true, format: 'dd-mm-yyyy' %>
           <%= f.submit "Submit", class: "submit-button button" %>
       <% end %>
 
