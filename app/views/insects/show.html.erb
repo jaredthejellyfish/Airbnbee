@@ -23,11 +23,13 @@
         <% end %>
         <a href=<%= book_button_link%>><button class="button submit-button book-button">BOOK</button></a>
 
+
         <!-- Edit button only visible for the owner -->
         <% if current_user && current_user.id == @insect.user_id %>
         <%= link_to "Edit", edit_insect_path %>
         <% end %>
       </div>
+
 
       <!-- Card about the owner -->
       <div class="product-card owner-box">
