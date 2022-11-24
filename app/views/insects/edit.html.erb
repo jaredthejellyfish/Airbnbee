@@ -1,0 +1,11 @@
+<% if current_user.id == @insect.user_id %>
+  <%= simple_form_for(@insect) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :img_url %>
+    <%= f.submit %>
+  <% end %>
+<% else %>
+  <p>Not your bug!</p>
+<% end %>

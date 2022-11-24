@@ -1,0 +1,37 @@
+$button-color: #6D071A;
+
+
+.search-bar {
+  width: 100%;
+  padding: 32px;
+  position: relative;
+}
+
+.button-search {
+  position: absolute;
+  height: 60px;
+  bottom: 34px;
+  right: 34px;
+  width: 20%;
+  background-color: $button-color;
+  border: none;
+  border-radius: 32px;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #862b3c;
+  color: #FFFFFF;
+}
+
+.button:active {
+  scale: 0.95;
+  transition: 0.2s;
+}
+
+.search-bar .form-control {
+  border-radius: 32px;
+  height: 64px;
+  font-size: 28px;
+}

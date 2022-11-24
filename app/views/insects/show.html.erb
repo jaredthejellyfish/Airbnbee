@@ -1,0 +1,78 @@
+<div class="page-container">
+  <div class="product-container">
+    <div class="invisible-flex-container">
+    <!-- 4 sub-boxes -->
+      <div class="product-card">
+        <% if @insect.photo.attached?  %>
+            <%= cl_image_tag @insect.photo.key, class:"product-image" %>
+        <% else %>
+            <a href="insects/"><img class="item-image" src="<%= @insect.img_url %>"></a>
+        <% end %>
+      </div>
+
+      <!-- The product name and specifications -->
+      <div class="product-card product-specs">
+        <h1 class="text-bold"><%= @insect.name %></h1>
+        <p><%= @insect.description %></p>
+        <br><br>
+        <h3 class="text-right text-bold"><%= @insect.price.round %> €</h3>
+
+
+
+        <!-- Edit button only visible for the owner -->
+        <% if current_user && current_user.id == @insect.user_id %>
+        <%= link_to "Edit", edit_insect_path %>
+        <% end %>
+      </div>
+
+
+      <!-- Card about the owner -->
+      <div class="product-card owner-box">
+        <% if @insect.user.photo.attached? %>
+          <%= cl_image_tag @insect.user.photo.key, gravity: :face, class: "owner-picture" %>
+        <% end %>
+        <h2 class="text-bold">Offered by <%= @insect.user.first_name %> <%= @insect.user.last_name %></h2>
+        <p>Active since: <%= @insect.user.created_at.strftime("%d/%m/%Y") %></p>
+        <h3>Bio :</h3>
+
+      <!-- Card about the upcoming bookings -->
+      <div class="product-card owner-box">
+        <h2 class="text-bold">Planning</h2>
+        <% @insect.bookings.each do |booking| %>
+            <p>From:</p>
+            <%= booking.start_date %>
+            <p>Until:</p>
+            <%= booking.end_date %>
+        <% end %>
+      </div>
+    </div>
+
+  <!-- Section about the booking action -->
+
+    <div class="wider-card">
+      <h2 class="text-centered text-bold">Book <%= @insect.name %></h2>
+
+      <%= simple_form_for [@insect, @booking] do |f| %>
+          <%= f.input :start_date %>
+          <%= f.input :end_date %>
+          <%= f.submit "Submit", class: "submit-button button" %>
+      <% end %>
+
+        <div>
+          <%= link_to "Back to all insects", insects_path %>
+        </div>
+
+      <% if current_user %>
+        <% if current_user.id == @insect.user_id %>
+            <%= link_to "Delete",
+              insect_path(@insect),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+            %>
+        <% end %>
+      <% else %>
+        <p></p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

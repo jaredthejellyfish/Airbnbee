@@ -1,0 +1,56 @@
+<div class="profile-container">
+  <h1>Hi, <%= "#{current_user.first_name} #{current_user.last_name}"%>!</h1>
+
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, class:"insect-img"%>
+    <% else %>
+      <%= image_tag asset_path("blank-prof.jpg"), class:"insect-img"%>
+    <% end %>
+
+      <p>First name</p>
+      <p><%= current_user.first_name %></p>
+      <p>Last name</p>
+      <p><%= current_user.last_name %></p>
+
+      <p>E-mail</p>
+      <p><%= current_user.email %></p>
+
+      <p>About me</p>
+      <p><%= current_user.bio %></p>
+
+      <button><%= link_to "Edit my profile", edit_user_path(current_user) %></button>
+      <button><%= link_to "List a new insect", new_insect_path %></button>
+
+  <h3>Your bookings:</h3>
+
+
+<% Booking.all.each do |booking| %>
+  <% if current_user == booking.user %>
+    <%= booking.insect.name %>
+    <%= booking.start_date %>
+    <%= booking.end_date %>
+    <%= link_to "Edit", edit_booking_path(booking) %>
+    <%= link_to "Delete",
+        [current_user, booking],
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+  <% end %>
+<% end %>
+<h3 class = "results-header">Your insects:</h3>
+
+<div class="results-container">
+    <% Insect.where(user: current_user).each do |insect| %>
+     <div class="bug-card" data-search-target="card">
+        <div class="item-text">
+          <h3><%= link_to insect.name, insect_path(insect) %></h3>
+        </div>
+        <%= insect.description %>
+        <% if insect.photo.attached?  %>
+          <%= cl_image_tag insect.photo.key, class:"item-image" %>
+        <% else %>
+          <a href="insects/"><img class="item-image" src="<%= insect.img_url %>"></a>
+        <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

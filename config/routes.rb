@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: "insects#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :insects do
+    resources :bookings, only: [:new, :create]
+  end
+
+  resources :users do
+    resources :bookings, only: [:show, :destroy]
+  end
+  resources :bookings, only: [:edit, :update]
+
+  get "/api/insects", to: "insects#api_index"
 end

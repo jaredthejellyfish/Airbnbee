@@ -1,0 +1,74 @@
+// Insects show view
+
+$background: #214d2e;
+$card-background: #FFFDD0;
+$container-max-width: 1280px;
+
+
+.page-container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  color: #000000;
+}
+
+.product-container {
+  margin: 16px 32px;
+  background-color: $card-background;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.invisible-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-card {
+  width: 512px;
+  max-width: 768px;
+  flex-grow: 1;
+  margin: 16px;
+  padding: 16px;
+}
+
+.wider-card {
+  margin: 16px;
+  padding: 16px;
+}
+
+.product-image {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.text-centered {
+  text-align: center;
+}
+
+.submit-button {
+  display: block;
+  margin: 32px auto;
+  padding: 16px 16%;
+  border-radius: 32px;
+  background-color: #6D071A;
+  color: #FFFFFF;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.owner-box .owner-picture {
+  width: 10%;
+  height: width;
+  object-fit: cover;
+  border-radius: 50%;
+}
