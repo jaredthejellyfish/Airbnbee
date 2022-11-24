@@ -4,8 +4,8 @@ export default class extends Controller {
     static targets = ["card", "searchInput"]
 
     fadeOut(element) {
-        var op = 1;  // initial opacity
-        var timer = setInterval(function () {
+        let op = 1;  // initial opacity
+        const timer = setInterval(function () {
             if (op <= 0.1) {
                 clearInterval(timer);
                 element.style.display = 'none';
