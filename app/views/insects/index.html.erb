@@ -4,7 +4,7 @@
 <div class="results-container">
   <div class="search-bar form-inline">
     <input type="search" id="form1" class="type-bar form-control" placeholder="Type query" aria-label="Search"  data-action="keyup->search#search" data-search-target="searchInput"/>
-    <button class="button-search" type="submit">Search</button>
+    <button class="button button-search" type="submit">Search</button>
   </div>
   <% @insects.each do |insect| %>
     <div class="item-card" id=<%= insect.id %> data-search-target="card">
