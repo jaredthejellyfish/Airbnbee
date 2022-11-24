@@ -18,11 +18,13 @@
         <h3 class="text-right text-bold"><%= @insect.price.round %> €</h3>
 
 
+
         <!-- Edit button only visible for the owner -->
         <% if current_user && current_user.id == @insect.user_id %>
         <%= link_to "Edit", edit_insect_path %>
         <% end %>
       </div>
+
 
       <!-- Card about the owner -->
       <div class="product-card owner-box">
