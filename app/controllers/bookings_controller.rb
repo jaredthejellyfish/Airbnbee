@@ -1,12 +1,18 @@
 class BookingsController < ApplicationController
-  before_action :set_insect, only: %i[new create]
+  before_action :set_insect, only: %i[index new create show]
   before_action :set_booking, only: %i[show edit update destroy]
 
+  def index
+    @user = current_user
+  end
+
   def show
+    @user = current_user
   end
 
   def new
     @booking = Booking.new
+    @user = current_user
   end
 
   def create
