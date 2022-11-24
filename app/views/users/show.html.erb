@@ -15,9 +15,6 @@
       <p>E-mail</p>
       <p><%= current_user.email %></p>
 
-      <p>About me</p>
-      <p><%= current_user.bio %></p>
-
       <button><%= link_to "Edit my profile", edit_user_path(current_user) %></button>
       <button><%= link_to "List a new insect", new_insect_path %></button>
 

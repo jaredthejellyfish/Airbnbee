@@ -33,7 +33,8 @@
         <% end %>
         <h2 class="text-bold">Offered by <%= @insect.user.first_name %> <%= @insect.user.last_name %></h2>
         <p>Active since: <%= @insect.user.created_at.strftime("%d/%m/%Y") %></p>
-        <h3>Bio :</h3>
+        <p>Bio : </p>
+      </div>
 
       <!-- Card about the upcoming bookings -->
       <div class="product-card owner-box">
