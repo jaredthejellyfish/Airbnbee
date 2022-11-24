@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_insect, only: %i[index new create show]
+  before_action :set_insect, only: %i[new create show]
   before_action :set_booking, only: %i[show edit update destroy]
 
   def index
@@ -27,16 +27,21 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
-    @booking.update(booking_params)
-    redirect_to insect_path(@insect)
+    @user = current_user
+    if @booking.update(booking_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def destroy
     @booking.destroy
-    redirect_to insects_path
+    redirect_to user_path
   end
 
   private
