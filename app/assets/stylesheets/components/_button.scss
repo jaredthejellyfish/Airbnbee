@@ -1,0 +1,19 @@
+.button-general {
+  height: 60px;
+  width: 20%;
+  background-color: $button-color;
+  border: none;
+  border-radius: 32px;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+.button-general:hover {
+  background-color: #862b3c;
+  color: #FFFFFF;
+}
+
+.button-general:active {
+  scale: 0.95;
+  transition: 0.2s;
+}

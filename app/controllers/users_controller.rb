@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @bookings = Booking.all
+    @user = current_user
   end
 
   def edit
