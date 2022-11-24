@@ -3,7 +3,7 @@
 <h1><%= @insect.name %></h1>
 <p><%= @insect.description %></p>
 <% if @insect.photo.attached?  %>
-  <div class ="item-img">
+  <div class ="insect-img">
   <%= cl_image_tag @insect.photo.key %>
   <div>
  <% else %>
