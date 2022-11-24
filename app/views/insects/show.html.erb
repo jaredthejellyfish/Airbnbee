@@ -1,14 +1,12 @@
-
+<div>
 
 <h1><%= @insect.name %></h1>
 <p><%= @insect.description %></p>
 <% if @insect.photo.attached?  %>
-  <div class ="insect-img">
-  <%= cl_image_tag @insect.photo.key %>
-  <div>
- <% else %>
- <a href="insects/"><img class="item-image" src="<%= @insect.img_url %>"></a>
-  <% end %>
+    <%= cl_image_tag @insect.photo.key, class:"insect-img" %>
+    <% else %>
+    <a href="insects/"><img class="item-image" src="<%= @insect.img_url %>"></a>
+<% end %>
 
 <div>
   <% if current_user && current_user.id == @insect.user_id %>
@@ -33,3 +31,5 @@
 <% else %>
   <p></p>
 <% end %>
+
+</div>

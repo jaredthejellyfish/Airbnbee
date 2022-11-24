@@ -60,6 +60,9 @@ body {
   border-radius: 5px;
 }
 
-.insect-image {
-  width: 240px;
+.insect-img {
+  width: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
