@@ -8,6 +8,11 @@
 require 'faker'
 require "open-uri"
 
+def clear()
+    User.destroy_all
+    Insect.destroy_all
+    Booking.destroy_all
+end
 
 def insect_image_file()
     URI.open("https://source.unsplash.com/random/900%C3%97700/?insect?#{rand()}")
@@ -66,6 +71,7 @@ def final
 end
 
 puts "Seeding! 🌱"
+clear
 (1..intro).each do |i|
     insect_file = insect_image_file()
     user_file =   user_image_file()
