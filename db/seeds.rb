@@ -52,9 +52,9 @@ def intro
 end
 
 def final
-    user_file = user_image_file()
-    user = User.create!(email: "123@email.real", password: "1234565", first_name: "Human", last_name: "Being")
-    user.photo.attach(io: user_file, filename: "portrait.jpg", content_type: "image/png")
+    # user_file = user_image_file()
+    # user = User.create!(email: "123@email.real", password: "1234565", first_name: "Human", last_name: "Being")
+    # user.photo.attach(io: user_file, filename: "portrait.jpg", content_type: "image/png")
 
     puts
     puts "-----------------------------------"
