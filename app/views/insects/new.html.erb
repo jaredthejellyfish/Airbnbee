@@ -1,8 +1,12 @@
-<h1>Add a new insect!</h1>
+<div data-controller="geolocation">
+  <h1>Add a new insect!</h1>
 
-<%= simple_form_for(@insect, data: {turbo: false}) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit "Submit", class: "btn btn-success" %>
-<% end %>
+  <%= simple_form_for(@insect, data: {turbo: false}) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :price %>
+      <%= f.input :address, input_html: { data: { geolocation_target: "field" } }%>
+      <%= f.input :photo, as: :file %>
+      <%= f.submit "Submit", class: "btn btn-success"%>
+  <% end %>
+</div>

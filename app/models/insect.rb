@@ -4,4 +4,7 @@ class Insect < ApplicationRecord
   has_one_attached :photo
 
   validates :name, presence: true
+
+  geocoded_by :address
+  after_validation :geocode
 end

@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container" data-controller="toggle">
   <div class="product-container">
     <div class="invisible-flex-container">
     <!-- 4 sub-boxes -->
@@ -15,65 +15,82 @@
         <h1 class="text-bold"><%= @insect.name %></h1>
         <p><%= @insect.description %></p>
         <br><br>
-        <h3 class="text-right text-bold"><%= @insect.price.round %> €</h3>
-
-
-
-        <!-- Edit button only visible for the owner -->
+        <h3 class="text-right text-bold"><%= @insect.price.round %> € / day &nbsp &nbsp</h3>
+        <%if user_signed_in? %>
+          <% book_button_link = "#booking-card" %>
+        <% else %>
+          <% book_button_link = new_user_session_path %>
+        <% end %>
+      <!-- Displays EDIT button if its the owner, displays BOOK button if its not the owner-->
         <% if current_user && current_user.id == @insect.user_id %>
-        <%= link_to "Edit", edit_insect_path %>
+          <a href=<%= edit_insect_path%>><button class="button submit-button book-button">EDIT</button></a>
+          <button class="button submit-button book-button"><%= link_to "DELETE", insect_path(@insect), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :style => 'color: white;'%></button>
+        <% else %>
+          <a href=<%= book_button_link%>><button class="button submit-button book-button">BOOK</button></a>
         <% end %>
       </div>
-
 
       <!-- Card about the owner -->
       <div class="product-card owner-box">
+      <h2 class="text-bold">Owner</h2>
         <% if @insect.user.photo.attached? %>
-          <%= cl_image_tag @insect.user.photo.key, gravity: :face, class: "owner-picture" %>
+          <%= link_to (cl_image_tag @insect.user.photo.key, gravity: :face, class: "owner-picture"), user_path(@insect) %>
+        <% else %>
+          <%= image_tag asset_path("blank-prof.jpg"), class: "owner-picture" %>
         <% end %>
-        <h2 class="text-bold">Offered by <%= @insect.user.first_name %> <%= @insect.user.last_name %></h2>
-        <p>Active since: <%= @insect.user.created_at.strftime("%d/%m/%Y") %></p>
-        <p>Bio : </p>
+        <h5 class="text-bold owner-name"><%= @insect.user.first_name %> <%= @insect.user.last_name.first %>.</h5>
+        <br><br>
+        <em style="font-style: italic">Bugger since: <%= @insect.user.created_at.strftime("%d/%m/%Y") %></em><br>
+        <p>Bio:</p>
+        <p><%= @insect.user.bio %></p>
       </div>
 
-      <!-- Card about the upcoming bookings -->
+      <!-- Card about the planning / upcoming bookings -->
       <div class="product-card owner-box">
-        <h2 class="text-bold">Planning</h2>
-        <% @insect.bookings.each do |booking| %>
-            <p>From:</p>
-            <%= booking.start_date %>
-            <p>Until:</p>
-            <%= booking.end_date %>
-        <% end %>
+        <h2 class="text-bold">Current bookings</h2>
+          <% if @insect.bookings.empty? %>
+            <p><%= @insect.name %> has no current booking. You may request a rental whenever you want!</p>
+          <% elsif @insect.bookings.length == 1 %>
+            <p><%= @insect.name %> has 1 current booking: </p>
+          <% else %>
+            <p><%= @insect.name %> has <%= @insect.bookings.length %> current bookings: </p>
+
+          <% end %>
+          <% @insect.bookings.each do |booking| %>
+              <span class="text-red">Booked from: <%= booking.start_date.strftime("%d %B %Y") %> to <%= booking.end_date.strftime("%d %B %Y") %></span><br/>
+          <% end %>
       </div>
     </div>
+
+  <h3 class="button map-toggle" data-action="click->toggle#toggle" data-toggle-target="toggle">
+  Show / hide the map
+  </h3>
+
+  <!-- Section for the map stuff! -->
+  <div class="mapbox-container" data-toggle-target="mapContainer">
+    <div data-toggle-target="mapContainer"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+        class="mapbox-map"></div>
+
+  </div>
 
   <!-- Section about the booking action -->
+  <!-- Displays booking section only if its not the owner-->
+  <% if user_signed_in? %>
+    <% unless current_user && current_user.id == @insect.user_id %>
+        <div id="booking-card" class="wider-card toggle">
+          <h2 class="text-centered text-bold">Book <%= @insect.name %></h2>
 
-    <div class="wider-card">
-      <h2 class="text-centered text-bold">Book <%= @insect.name %></h2>
-
-      <%= simple_form_for [@insect, @booking] do |f| %>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
-          <%= f.submit "Submit", class: "submit-button button" %>
-      <% end %>
-
-        <div>
-          <%= link_to "Back to all insects", insects_path %>
+          <%= simple_form_for [@insect, @booking] do |f| %>
+              <%= f.input :start_date, as: :date, html5: true, include_blank: true, format: 'dd-mm-yyyy' %>
+              <%= f.input :end_date, as: :date, html5: true, include_blank: true, format: 'dd-mm-yyyy' %>
+              <%= f.submit "Submit", class: "submit-button button" %>
+          <% end %>
+    <% end %>
         </div>
-
-      <% if current_user %>
-        <% if current_user.id == @insect.user_id %>
-            <%= link_to "Delete",
-              insect_path(@insect),
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-            %>
-        <% end %>
-      <% else %>
-        <p></p>
-      <% end %>
-    </div>
+  <% end %>
   </div>
 
 </div>

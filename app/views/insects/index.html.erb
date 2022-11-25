@@ -14,8 +14,9 @@
       <a href="insects/<%= insect.id %>"><img class="item-image" src="<%= insect.img_url %>"></a>
     <% end %>
       <div class="item-text">
-        <h3 class="item-name"><%= link_to insect.name, insect_path(insect) %></h3>
+        <h3><%= link_to insect.name, insect_path(insect), class: "item-text" %></h3>
       </div>
+        <p class="text-right text-bold item-price"><%= insect.price.round %> € / day &nbsp &nbsp</p>
     </div>
   <% end %>
  </div>
