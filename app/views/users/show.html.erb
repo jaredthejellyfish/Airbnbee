@@ -27,8 +27,9 @@
 
 <h3 id="your-insects-header" class="results-header">See my insects</h3>
 
-<!-- List of the user's insects -->
+<% if current_user == @user %>
 
+<!-- List of the user's insects -->
 <div id="your-insects-container" class="results-container hidden">
     <% Insect.where(user: @user).each do |insect| %>
      <div class="bug-card" data-search-target="card">
@@ -45,10 +46,7 @@
     <% end %>
   </div>
 
-
-
  <!-- List of the user's bookings -->
- <% if current_user == @user %>
   <h3 id="your-bookings-header" class="results-header">See my bookings</h3>
   <div id="your-bookings-container" class="results-container hidden">
     <% @user.bookings.each do |booking| %>

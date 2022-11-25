@@ -62,9 +62,9 @@
       </div>
     </div>
 
-  <button class="im-an-ugly-button toggle" data-action="click->toggle#toggle" data-toggle-target="toggle">
-  ME LOOK PRETTY
-  </button>
+  <h3 class="button map-toggle" data-action="click->toggle#toggle" data-toggle-target="toggle">
+  Show / hide the map
+  </h3>
 
   <!-- Section for the map stuff! -->
   <div class="mapbox-container" data-toggle-target="mapContainer">
@@ -89,10 +89,6 @@
               <%= f.submit "Submit", class: "submit-button button" %>
           <% end %>
     <% end %>
-
-            <div>
-              <button class="button submit-button back-button"><%= link_to "All insects", insects_path, :style => 'color: white;' %></button>
-            </div>
         </div>
   <% end %>
   </div>
