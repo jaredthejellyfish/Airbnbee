@@ -3,18 +3,24 @@
     <div class="invisible-flex-container user-container">
       <div class="product-card user-image-container">
           <% if @user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, class:"user-image"%>
+            <%= cl_image_tag @user.photo.key, class:"user-image"%>
           <% else %>
             <%= image_tag asset_path("blank-prof.jpg"), class:"user-image"%>
           <% end %>
       </div>
       <div class="user-profile-container">
-        <h3><strong>My profile</strong> <span><%= link_to "Edit", edit_user_path(current_user) %><span></h3>
-          <br><p>First name: <strong><%= current_user.first_name %></strong></p>
-          <p>Last name: <strong><%= current_user.last_name %></strong></p>
-          <p>E-mail: <strong><%= current_user.email %></strong></p>
-          <p>Bio: <strong><%= current_user.bio %></strong></p>
-          <a href="<%= new_insect_path%>"><button class="button user-button">+ Offer a new insect</button></a>
+        <h3><strong>My profile</strong> <span>
+        <% if current_user == @user %>
+          <%= link_to "Edit", edit_user_path(@user) %><span>
+        <% end %> 
+         </h3>
+          <br><p>First name: <strong><%= @user.first_name %></strong></p>
+          <p>Last name: <strong><%= @user.last_name %></strong></p>
+          <p>E-mail: <strong><%= @user.email %></strong></p>
+          <p>Bio: <strong><%= @user.bio %></strong></p>
+          <% if current_user == @user %>
+            <a href="<%= new_insect_path%>"><button class="button user-button">+ Offer a new insect</button></a>
+          <% end %> 
       </div>
     </div>
   </div>
@@ -22,8 +28,9 @@
 <h3 id="your-insects-header" class="results-header">See my insects</h3>
 
 <!-- List of the user's insects -->
-  <div id="your-insects-container" class="results-container hidden">
-    <% Insect.where(user: current_user).each do |insect| %>
+
+<div id="your-insects-container" class="results-container hidden">
+    <% Insect.where(user: @user).each do |insect| %>
      <div class="bug-card" data-search-target="card">
         <div class="item-text">
           <h3><%= link_to insect.name, insect_path(insect) %></h3>
@@ -39,7 +46,9 @@
   </div>
 
 
-  <!-- List of the user's bookings -->
+
+ <!-- List of the user's bookings -->
+ <% if current_user == @user %>
   <h3 id="your-bookings-header" class="results-header">See my bookings</h3>
   <div id="your-bookings-container" class="results-container hidden">
     <% @user.bookings.each do |booking| %>
@@ -49,13 +58,16 @@
           <p>Booked from <%= booking.start_date.strftime("%d/%m/%Y") %> to <%= booking.end_date.strftime("%d/%m/%Y") %></p>
           <p><strong><%= booking.insect.price.round %> €</strong></p>
           <p><%= link_to "Edit", edit_booking_path(booking) %><br><%= link_to "Delete",
-              [current_user, booking],
+              [@user, booking],
               data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
             %></p>
         </div>
     <% end %>
   </div>
+<% end %>
+
 </div>
+
 
 <script>
   const insectDropdown = document.getElementById("your-insects-header");
