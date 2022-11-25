@@ -65,7 +65,6 @@ def final
 end
 
 puts "Seeding! 🌱"
-clear
 (1..intro).each do |i|
     insect_file = insect_image_file()
     user_file =   user_image_file()
