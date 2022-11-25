@@ -16,13 +16,15 @@
   flex-basis: 256px;
   max-width: 256px;
   flex-grow: 1;
-  margin: 0 128px;
+  margin: 16px 64px;
 }
 
 .user-image {
-    width: 100%;
-    border-radius: 50%;
-    border: 2px solid  #214d2e;
+  width: 100%;
+  height: 256px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid  #214d2e;
 }
 
 .user-profile-container  {

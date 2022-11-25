@@ -1,9 +1,9 @@
 <div class="page-container">
   <div class="product-container">
     <div class="invisible-flex-container user-container">
-      <div class="product-card user-image-container">
+      <div class="user-image-container">
           <% if @user.photo.attached? %>
-            <%= cl_image_tag @user.photo.key, class:"user-image"%>
+            <%= cl_image_tag @user.photo.key, gravity: :face, class:"user-image"%>
           <% else %>
             <%= image_tag asset_path("blank-prof.jpg"), class:"user-image"%>
           <% end %>
@@ -12,7 +12,7 @@
         <h3><strong>My profile</strong> <span>
         <% if current_user == @user %>
           <%= link_to "Edit", edit_user_path(@user) %><span>
-        <% end %> 
+        <% end %>
          </h3>
           <br><p>First name: <strong><%= @user.first_name %></strong></p>
           <p>Last name: <strong><%= @user.last_name %></strong></p>
@@ -20,7 +20,7 @@
           <p>Bio: <strong><%= @user.bio %></strong></p>
           <% if current_user == @user %>
             <a href="<%= new_insect_path%>"><button class="button user-button">+ Offer a new insect</button></a>
-          <% end %> 
+          <% end %>
       </div>
     </div>
   </div>
