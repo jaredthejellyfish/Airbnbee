@@ -9,9 +9,9 @@ require 'faker'
 require "open-uri"
 
 def clear()
+    Booking.destroy_all
     User.destroy_all
     Insect.destroy_all
-    Booking.destroy_all
 end
 
 def insect_image_file()
