@@ -88,3 +88,17 @@ $container-max-width: 1280px;
   display: inline;
   padding-top: 0px;
 }
+
+.mapbox-container {
+  width: 100%;
+  height: 400px;
+  display: block;
+}
+
+.mapbox-map {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 32px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}

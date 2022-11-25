@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container" data-controller="toggle">
   <div class="product-container">
     <div class="invisible-flex-container">
     <!-- 4 sub-boxes -->
@@ -62,9 +62,23 @@
       </div>
     </div>
 
+  <button class="im-an-ugly-button toggle" data-action="click->toggle#toggle" data-toggle-target="toggle">
+  ME LOOK PRETTY
+  </button>
+
+  <!-- Section for the map stuff! -->
+  <div class="mapbox-container" data-toggle-target="mapContainer">
+    <div data-toggle-target="mapContainer"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+        class="mapbox-map"></div>
+
+  </div>
+
   <!-- Section about the booking action -->
   <% if user_signed_in? %>
-    <div id="booking-card" class="wider-card">
+    <div id="booking-card" class="wider-card toggle">
       <h2 class="text-centered text-bold">Book <%= @insect.name %></h2>
 
       <%= simple_form_for [@insect, @booking] do |f| %>

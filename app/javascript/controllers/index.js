@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
-import SearchController from "./search"
+import MapController from "./map_controller"
+application.register("map", MapController)
+
+import MapToggleController from "./toggle_controller"
+application.register("toggle", MapToggleController)
+
+import SearchController from "./search_controller"
 application.register("search", SearchController)

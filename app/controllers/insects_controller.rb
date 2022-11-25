@@ -8,6 +8,7 @@ class InsectsController < ApplicationController
   def show
     set_insect
     @booking = Booking.new
+    @markers = [{ lat: @insect.latitude, lng: @insect.longitude, image_url: helpers.asset_url("marker.png") }]
   end
 
   def new
@@ -28,11 +29,11 @@ class InsectsController < ApplicationController
     set_insect
   end
 
-def update
-  set_insect
-  @insect.update(insect_params)
-  redirect_to insect_path(@insect)
-end
+  def update
+    set_insect
+    @insect.update(insect_params)
+    redirect_to insect_path(@insect)
+  end
 
   def destroy
     set_insect

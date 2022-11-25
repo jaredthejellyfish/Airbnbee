@@ -24,12 +24,12 @@ def seed_user(file)
 end
 
 def seed_insect(user, file)
-    insect = Insect.create!(name: Faker::Games::Pokemon.name, description: Faker::Lorem.paragraph, user: user, price: rand(1..10000))
+    insect = Insect.create!(name: Faker::Games::Pokemon.name, description: Faker::Lorem.paragraph, user: user, price: rand(1..10000), latitude: rand(-90..90), longitude:rand(-180..180))
     insect.photo.attach(io: file, filename: "insect.jpg", content_type: "image/png")
     insect
 end
 
-def seed_bookings(user, insect)
+def seed_bookings(user)
     booking = Booking.create!(user: user, insect: Insect.all.sample, start_date: Faker::Date.backward(days: 14), end_date: Faker::Date.forward(days: 23), rating: rand(1..5), review: Faker::Lorem.paragraph)
 end
 
@@ -42,7 +42,7 @@ def intro
     puts "How many users, insects, and bookings would you like to create? (Integer)"
     print "> "
     input = gets.chomp.to_i
-    puts 
+    puts
     input
 end
 
@@ -73,7 +73,7 @@ puts "Seeding! 🌱"
     insect =      seed_insect(user, insect_file)
 
     puts "> Created #{user.email} with insect: #{insect.name}!"
-    seed_bookings(user, insect)
+    seed_bookings(user)
 end
 
 final
