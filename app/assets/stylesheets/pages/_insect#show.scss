@@ -17,6 +17,7 @@ $container-max-width: 1280px;
   border: 1px solid #000000;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  padding-bottom: 32px;
 }
 
 .invisible-flex-container {
@@ -69,7 +70,16 @@ $container-max-width: 1280px;
   margin-left: 0;
 }
 
-
+.map-toggle {
+  text-align: center;
+  margin: 0 32px;
+  padding: 8px 8px;
+  cursor: pointer;
+  border-radius: 32px;
+  background-color: #7e7e7e;
+  color: #FFFFFF;
+  font-size: 18px;
+}
 
 .book-button:visited {
   color: #FFFFFF;
