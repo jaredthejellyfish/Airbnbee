@@ -21,12 +21,11 @@
         <% else %>
           <% book_button_link = new_user_session_path %>
         <% end %>
-        <a href=<%= book_button_link%>><button class="button submit-button book-button">BOOK</button></a>
-
-
-        <!-- Edit button only visible for the owner -->
+      <!-- Displays EDIT button if its the owner, displays BOOK button if its not the owner-->
         <% if current_user && current_user.id == @insect.user_id %>
-        <%= link_to "Edit", edit_insect_path %>
+          <a href=<%= edit_insect_path%>><button class="button submit-button book-button">EDIT</button></a>
+        <% else %>
+          <a href=<%= book_button_link%>><button class="button submit-button book-button">BOOK</button></a>
         <% end %>
       </div>
 
@@ -76,31 +75,34 @@
   </div>
 
   <!-- Section about the booking action -->
+  <!-- Displays booking section only if its not the owner-->
   <% if user_signed_in? %>
-    <div id="booking-card" class="wider-card toggle">
-      <h2 class="text-centered text-bold">Book <%= @insect.name %></h2>
+    <% unless current_user && current_user.id == @insect.user_id %>
+        <div id="booking-card" class="wider-card toggle">
+          <h2 class="text-centered text-bold">Book <%= @insect.name %></h2>
 
-      <%= simple_form_for [@insect, @booking] do |f| %>
-          <%= f.input :start_date, as: :date, html5: true, include_blank: true, format: 'dd-mm-yyyy' %>
-          <%= f.input :end_date, as: :date, html5: true, include_blank: true, format: 'dd-mm-yyyy' %>
-          <%= f.submit "Submit", class: "submit-button button" %>
-      <% end %>
+          <%= simple_form_for [@insect, @booking] do |f| %>
+              <%= f.input :start_date, as: :date, html5: true, include_blank: true, format: 'dd-mm-yyyy' %>
+              <%= f.input :end_date, as: :date, html5: true, include_blank: true, format: 'dd-mm-yyyy' %>
+              <%= f.submit "Submit", class: "submit-button button" %>
+          <% end %>
+    <% end %>
 
-        <div>
-          <%= link_to "Back to all insects", insects_path %>
+            <div>
+              <%= link_to "Back to all insects", insects_path %>
+            </div>
+
+          <% if current_user %>
+            <% if current_user.id == @insect.user_id %>
+                <%= link_to "Delete",
+                  insect_path(@insect),
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+                %>
+            <% end %>
+          <% else %>
+            <p></p>
+          <% end %>
         </div>
-
-      <% if current_user %>
-        <% if current_user.id == @insect.user_id %>
-            <%= link_to "Delete",
-              insect_path(@insect),
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-            %>
-        <% end %>
-      <% else %>
-        <p></p>
-      <% end %>
-    </div>
   <% end %>
   </div>
 
