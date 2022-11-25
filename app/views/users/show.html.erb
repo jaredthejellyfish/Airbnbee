@@ -15,6 +15,9 @@
       <p>E-mail</p>
       <p><%= current_user.email %></p>
 
+      <p>About me:</p>
+      <p><%= current_user.bio %></p>
+
       <button><%= link_to "Edit my profile", edit_user_path(current_user) %></button>
       <button><%= link_to "List a new insect", new_insect_path %></button>
 
@@ -38,10 +41,10 @@
     <% end %>
   <% end %>
 
-<h3 class = "results-header">Your insects:</h3>
+<h3 id="your-insects-header" class="results-header">My insects</h3>
 
 <%# organizing 'your insects' into cards. %>
-<div class="results-container">
+<div id="your-insects-container" class="results-container hidden">
     <% Insect.where(user: current_user).each do |insect| %>
      <div class="bug-card" data-search-target="card">
         <div class="item-text">
@@ -57,3 +60,17 @@
     <% end %>
   </div>
 </div>
+
+<h3 id="your-bookings-header" class="results-header">My bookings</h3>
+
+<script>
+  const insectDropdown = document.getElementById("your-insects-header");
+  const yourInsects = document.getElementById("your-insects-container");
+
+  insectDropdown.addEventListener("click", (event) => {
+    event.preventDefault()
+    yourInsects.classList.toggle("hidden");
+    yourInsects.classList.toggle("visible");
+  })
+
+</script>
