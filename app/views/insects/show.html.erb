@@ -24,6 +24,7 @@
       <!-- Displays EDIT button if its the owner, displays BOOK button if its not the owner-->
         <% if current_user && current_user.id == @insect.user_id %>
           <a href=<%= edit_insect_path%>><button class="button submit-button book-button">EDIT</button></a>
+          <button class="button submit-button book-button"><%= link_to "DELETE", insect_path(@insect), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :style => 'color: white;'%></button>
         <% else %>
           <a href=<%= book_button_link%>><button class="button submit-button book-button">BOOK</button></a>
         <% end %>
@@ -33,14 +34,15 @@
       <div class="product-card owner-box">
       <h2 class="text-bold">Owner</h2>
         <% if @insect.user.photo.attached? %>
-          <%= cl_image_tag @insect.user.photo.key, gravity: :face, class: "owner-picture" %>
+          <%= link_to (cl_image_tag @insect.user.photo.key, gravity: :face, class: "owner-picture"), user_path(@insect) %>
         <% else %>
           <%= image_tag asset_path("blank-prof.jpg"), class: "owner-picture" %>
         <% end %>
         <h5 class="text-bold owner-name"><%= @insect.user.first_name %> <%= @insect.user.last_name.first %>.</h5>
         <br><br>
-        <em style="font-style: italic">Bugger since: <%= @insect.user.created_at.strftime("%d/%m/%Y") %></em>
-        <p>Bio : <%= %></p>
+        <em style="font-style: italic">Bugger since: <%= @insect.user.created_at.strftime("%d/%m/%Y") %></em><br>
+        <p>Bio:</p>
+        <p><%= @insect.user.bio %></p>
       </div>
 
       <!-- Card about the planning / upcoming bookings -->
@@ -89,19 +91,8 @@
     <% end %>
 
             <div>
-              <%= link_to "Back to all insects", insects_path %>
+              <button class="button submit-button back-button"><%= link_to "All insects", insects_path, :style => 'color: white;' %></button>
             </div>
-
-          <% if current_user %>
-            <% if current_user.id == @insect.user_id %>
-                <%= link_to "Delete",
-                  insect_path(@insect),
-                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-                %>
-            <% end %>
-          <% else %>
-            <p></p>
-          <% end %>
         </div>
   <% end %>
   </div>
