@@ -25,7 +25,7 @@
     </div>
   </div>
 
-<h3 id="your-insects-header" class="results-header">See my insects</h3>
+<h3 id="your-insects-header" class="results-header"> See my insects ▾ </h3>
 
 <% if current_user == @user %>
 
@@ -47,14 +47,15 @@
   </div>
 
  <!-- List of the user's bookings -->
-  <h3 id="your-bookings-header" class="results-header">See my bookings</h3>
+  <h3 id="your-bookings-header" class="results-header"> See my bookings ▾ </h3>
   <div id="your-bookings-container" class="results-container hidden">
     <% @user.bookings.each do |booking| %>
       <div class="booking-card">
       <p><%= cl_image_tag booking.user.photo.key, gravity: :face, class: "client-picture"%> <strong><%= booking.user.first_name %> <%=booking.user.last_name.first%>.</strong></p>
         <p><%= cl_image_tag booking.insect.photo.key, gravity: :auto, class: "insect-picture"%> <strong><%= booking.insect.name %></strong></p>
-          <p>Booked from <%= booking.start_date.strftime("%d/%m/%Y") %> to <%= booking.end_date.strftime("%d/%m/%Y") %></p>
-          <p><strong><%= booking.insect.price.round %> €</strong></p>
+          <% number_of_days = (booking.end_date - booking.start_date).to_i %>
+          <p>Booked <%= number_of_days %> days from <%= booking.start_date.strftime("%d/%m/%Y") %> to <%= booking.end_date.strftime("%d/%m/%Y") %></p>
+          <p><strong><%= (booking.insect.price.round  * number_of_days) %> €</strong></p>
           <p><%= link_to "Edit", edit_booking_path(booking) %><br><%= link_to "Delete",
               [@user, booking],
               data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
