@@ -1,28 +1,30 @@
 <div class="profile-container">
-  <h1>Hi, <%= "#{current_user.first_name} #{current_user.last_name}"%>!</h1>
+  <h1>Hi, <%= "#{@user.first_name} #{@user.last_name}"%>!</h1>
 
     <% if @user.photo.attached? %>
-      <%= cl_image_tag current_user.photo.key, class:"insect-img"%>
+      <%= cl_image_tag @user.photo.key, class:"insect-img"%>
     <% else %>
       <%= image_tag asset_path("blank-prof.jpg"), class:"insect-img"%>
     <% end %>
 
       <p>First name</p>
-      <p><%= current_user.first_name %></p>
+      <p><%= @user.first_name %></p>
       <p>Last name</p>
-      <p><%= current_user.last_name %></p>
+      <p><%= @user.last_name %></p>
 
       <p>E-mail</p>
-      <p><%= current_user.email %></p>
+      <p><%= @user.email %></p>
 
-      <button><%= link_to "Edit my profile", edit_user_path(current_user) %></button>
+    <% if current_user == @user %>
+      <button><%= link_to "Edit my profile", edit_user_path(@user) %></button>
       <button><%= link_to "List a new insect", new_insect_path %></button>
+    <% end %>
 
 <h3 id="your-insects-header" class="results-header">My insects</h3>
 
 <!-- List of the user's insects -->
 <div id="your-insects-container" class="results-container hidden">
-    <% Insect.where(user: current_user).each do |insect| %>
+    <% Insect.where(user: @user).each do |insect| %>
      <div class="bug-card" data-search-target="card">
         <div class="item-text">
           <h3><%= link_to insect.name, insect_path(insect) %></h3>
@@ -48,7 +50,7 @@
         <p>Booked from <%= booking.start_date.strftime("%d/%m/%Y") %> to <%= booking.end_date.strftime("%d/%m/%Y") %></p>
         <p><strong><%= booking.insect.price.round %> €</strong></p>
         <p><%= link_to "Edit", edit_booking_path(booking) %><br><%= link_to "Delete",
-            [current_user, booking],
+            [@user, booking],
             data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
           %></p>
       </div>
