@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: Airbnbee_production
-  username: Airbnbee
-  password: <%= ENV["AIRBNBEE_DATABASE_PASSWORD"] %>
+  database: d859bt8jk8895n
+  username: tgmackwtyesrmw
+  password: <%= ENV["DATABASE_PASSWORD"] %>
