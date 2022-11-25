@@ -39,9 +39,6 @@
   cursor: pointer;
 }
 
-#your-insects-container {
-
-}
 
 .hidden {
   // display: none !important;
@@ -56,4 +53,39 @@
   overflow: scroll;
   // overflow: hidden;
   transition: all 2s ease-in-out;
+}
+
+// In the booking division
+
+.booking-card {
+  width: 100%;
+  background-color: $card-background;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  flex-grow: 1;
+  justify-self: stretch;
+  margin: 32px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-card p {
+  padding: 8px 16px;
+}
+
+.client-picture {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.insect-picture {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
 }

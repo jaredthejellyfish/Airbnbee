@@ -15,35 +15,12 @@
       <p>E-mail</p>
       <p><%= current_user.email %></p>
 
-      <p>About me:</p>
-      <p><%= current_user.bio %></p>
-
       <button><%= link_to "Edit my profile", edit_user_path(current_user) %></button>
       <button><%= link_to "List a new insect", new_insect_path %></button>
 
-  <h3>Your bookings:</h3>
-
-<h3>Your bookings.</h3>
-<div>
-  <% Booking.all.each do |booking| %>
-    <% if current_user == booking.user %>
-      <p>Your Insect:</p>
-      <%= booking.insect.name %>
-      <p>From:</p>
-      <%= booking.start_date %>
-      <p>Until:</p>
-      <%= booking.end_date %>
-      <%= link_to "Edit", edit_booking_path(booking) %>
-      <%= link_to "Delete",
-          [current_user, booking],
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-        %>
-    <% end %>
-  <% end %>
-
 <h3 id="your-insects-header" class="results-header">My insects</h3>
 
-<%# organizing 'your insects' into cards. %>
+<!-- List of the user's insects -->
 <div id="your-insects-container" class="results-container hidden">
     <% Insect.where(user: current_user).each do |insect| %>
      <div class="bug-card" data-search-target="card">
@@ -61,16 +38,42 @@
   </div>
 </div>
 
+<!-- List of the user's bookings -->
 <h3 id="your-bookings-header" class="results-header">My bookings</h3>
+<div id="your-bookings-container" class="results-container hidden">
+  <% @user.bookings.each do |booking| %>
+     <div class="booking-card">
+     <p><%= cl_image_tag booking.user.photo.key, gravity: :face, class: "client-picture"%> <strong><%= booking.user.first_name %> <%=booking.user.last_name.first%>.</strong></p>
+      <p><%= cl_image_tag booking.insect.photo.key, gravity: :auto, class: "insect-picture"%> <strong><%= booking.insect.name %></strong></p>
+        <p>Booked from <%= booking.start_date.strftime("%d/%m/%Y") %> to <%= booking.end_date.strftime("%d/%m/%Y") %></p>
+        <p><strong><%= booking.insect.price.round %> €</strong></p>
+        <p><%= link_to "Edit", edit_booking_path(booking) %><br><%= link_to "Delete",
+            [current_user, booking],
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+          %></p>
+      </div>
+  <% end %>
+</div>
 
 <script>
   const insectDropdown = document.getElementById("your-insects-header");
+  const bookingDropdown = document.getElementById("your-bookings-header");
+
   const yourInsects = document.getElementById("your-insects-container");
+  const yourBookings = document.getElementById("your-bookings-container");
+
 
   insectDropdown.addEventListener("click", (event) => {
     event.preventDefault()
     yourInsects.classList.toggle("hidden");
     yourInsects.classList.toggle("visible");
   })
+
+  bookingDropdown.addEventListener("click", (event) => {
+    event.preventDefault()
+    yourBookings.classList.toggle("hidden");
+    yourBookings.classList.toggle("visible");
+  })
+
 
 </script>
