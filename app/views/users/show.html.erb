@@ -25,7 +25,7 @@
     </div>
   </div>
 
-<h3 id="your-insects-header" class="results-header"> See my insects ▾ </h3>
+<h3 id="your-insects-header" class="results-header"> See my insects (<%= Insect.where(user: @user).count%>) ▾ </h3>
 
 <% if current_user == @user %>
 
@@ -47,7 +47,7 @@
   </div>
 
  <!-- List of the user's bookings -->
-  <h3 id="your-bookings-header" class="results-header"> See my bookings ▾ </h3>
+  <h3 id="your-bookings-header" class="results-header"> See my bookings (<%= @user.bookings.count%>) ▾ </h3>
   <div id="your-bookings-container" class="results-container hidden">
     <% @user.bookings.each do |booking| %>
       <div class="booking-card">
