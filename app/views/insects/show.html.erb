@@ -24,6 +24,7 @@
       <!-- Displays EDIT button if its the owner, displays BOOK button if its not the owner-->
         <% if current_user && current_user.id == @insect.user_id %>
           <a href=<%= edit_insect_path%>><button class="button submit-button book-button">EDIT</button></a>
+          <button class="button submit-button book-button"><%= link_to "DELETE", insect_path(@insect), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :style => 'color: white;'%></button>
         <% else %>
           <a href=<%= book_button_link%>><button class="button submit-button book-button">BOOK</button></a>
         <% end %>
@@ -91,17 +92,6 @@
             <div>
               <%= link_to "Back to all insects", insects_path %>
             </div>
-
-          <% if current_user %>
-            <% if current_user.id == @insect.user_id %>
-                <%= link_to "Delete",
-                  insect_path(@insect),
-                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-                %>
-            <% end %>
-          <% else %>
-            <p></p>
-          <% end %>
         </div>
   <% end %>
   </div>
